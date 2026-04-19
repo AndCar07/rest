@@ -217,6 +217,6 @@ function getIdDaQuery(): int {
 
 function rispondi(int $codice, mixed $corpo): never {
     http_response_code($codice);
-    echo json_encode($corpo, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    echo json_encode($corpo, JSON_UNESCAPED_UNICODE);
     exit;
 }
