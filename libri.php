@@ -197,7 +197,7 @@ function leggiJSON(): array {
     if (empty($raw)) {
         rispondi(400, ['errore' => 'Body della richiesta vuoto o non JSON.']);
     }
-    $dati = json_decode($raw, true);
+    $dati = json_decode($raw, true);//con true restituisce un array associativo
     if (json_last_error() !== JSON_ERROR_NONE) {
         rispondi(400, ['errore' => 'JSON non valido: ' . json_last_error_msg()]);
     }
@@ -217,6 +217,20 @@ function getIdDaQuery(): int {
 
 function rispondi(int $codice, mixed $corpo): never {
     http_response_code($codice);
-    echo json_encode($corpo, JSON_UNESCAPED_UNICODE);
+    echo json_encode($corpo, JSON_UNESCAPED_UNICODE);//per evitare che i termini accentati venghino trasformati in codici unicode
     exit;
 }
+
+
+// esempi
+// Per il GET
+//curl.exe http://localhost/libri/libri.php
+
+//Per il POST (va creato un file libro.json)
+//curl.exe -X POST http://localhost/libri/libri.php -H "Content-Type: application/json" -d @libro.json
+
+//Per il DELETE
+//curl.exe -X DELETE http://localhost/libri/libri.php?id=101
+
+//Per PUT (va creato un dile aggiorna.json)
+//curl.exe -X PUT http://localhost/libri/libri.php?id=101 -H "Content-Type: application/json" -d @aggiorna.json
