@@ -234,3 +234,4 @@ function rispondi(int $codice, mixed $corpo): never {
 
 //Per PUT (va creato un dile aggiorna.json)
 //curl.exe -X PUT http://localhost/libri/libri.php?id=101 -H "Content-Type: application/json" -d @aggiorna.json
+?>
