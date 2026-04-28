@@ -162,7 +162,7 @@ function aggiornaLibro(PDO $pdo) {
                 if ($valore === false) rispondi(400, ['errore' => "'anno' deve essere un numero intero."]);
             } else {
                 $valore = trim($dati[$campo]);
-                if ($valore === '') continue;
+                if ($valore === '') continue;//deve essere un'uguaglianza stretta
             }
             $aggiornamenti[]      = "$campo = :$campo";
             $parametri[":$campo"] = $valore;
