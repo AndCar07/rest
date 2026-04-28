@@ -165,7 +165,7 @@ function aggiornaLibro(PDO $pdo) {
                 if ($valore === '') continue;//deve essere un'uguaglianza stretta (sia il valore che il tipo di dato)
             }
             $aggiornamenti[]      = "$campo = :$campo";
-            $parametri[":$campo"] = $valore;
+            $parametri[":$campo"] = $valore;//array associativo quindi dopo nell'execute posso passarlo direttente
         }
     }
 
@@ -204,7 +204,7 @@ function leggiJSON(): array {
     return $dati;
 }
 
-function getIdDaQuery(): int {
+function getIdDaQuery(): int {//verifica la presenza dell'id e la sua correttezza
     if (!isset($_GET['id'])) {
         rispondi(400, ['errore' => "Parametro 'id' mancante nella query string."]);
     }
